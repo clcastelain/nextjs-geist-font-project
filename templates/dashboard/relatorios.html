@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Relatórios | Sistema{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+            <i class="bi bi-file-earmark-text me-2"></i>
+            Relatórios
+        </h1>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-people fs-1 text-primary mb-3"></i>
+                    <h5 class="card-title">Relatório de Cadastros</h5>
+                    <p class="card-text">Análise completa dos cadastros realizados</p>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>Gerar Relatório
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-diagram-3 fs-1 text-success mb-3"></i>
+                    <h5 class="card-title">Relatório de Processos</h5>
+                    <p class="card-text">Status e andamento dos processos</p>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>Gerar Relatório
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-graph-up fs-1 text-warning mb-3"></i>
+                    <h5 class="card-title">Relatório de Desempenho</h5>
+                    <p class="card-text">Métricas e indicadores de performance</p>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>Gerar Relatório
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-check fs-1 text-info mb-3"></i>
+                    <h5 class="card-title">Relatório Mensal</h5>
+                    <p class="card-text">Resumo das atividades do mês</p>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-download me-2"></i>Gerar Relatório
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Histórico de Relatórios Gerados</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tipo de Relatório</th>
+                            <th scope="col">Data de Geração</th>
+                            <th scope="col">Gerado por</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>R001</td>
+                            <td>Relatório de Cadastros</td>
+                            <td>01/03/2024</td>
+                            <td>João Silva</td>
+                            <td><span class="badge bg-success">Disponível</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-success">
+                                    <i class="bi bi-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>R002</td>
+                            <td>Relatório de Processos</td>
+                            <td>28/02/2024</td>
+                            <td>Maria Santos</td>
+                            <td><span class="badge bg-success">Disponível</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-success">
+                                    <i class="bi bi-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>R003</td>
+                            <td>Relatório Mensal</td>
+                            <td>25/02/2024</td>
+                            <td>Pedro Oliveira</td>
+                            <td><span class="badge bg-warning">Processando</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary me-1" disabled>
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-success" disabled>
+                                    <i class="bi bi-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <nav aria-label="Navegação de página" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Próximo</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}
