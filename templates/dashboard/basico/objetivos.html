@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Objetivos | Sistema{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h2 mb-4">Objetivos</h1>
+
+    <div class="mb-3">
+        <a href="{% url 'dashboard:objetivo_create' %}" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Novo Objetivo
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for objetivo in objetivos %}
+            <tr>
+                <td>{{ objetivo.nome }}</td>
+                <td>{{ objetivo.descricao }}</td>
+                <td>
+                    <a href="{% url 'dashboard:objetivo_update' objetivo.pk %}" class="btn btn-sm btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="{% url 'dashboard:objetivo_delete' objetivo.pk %}" class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">Nenhum objetivo cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav aria-label="Paginação">
+        <ul class="pagination justify-content-center">
+            {% if objetivos.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ objetivos.previous_page_number }}" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+            {% for num in objetivos.paginator.page_range %}
+              {% if objetivos.number == num %}
+                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if objetivos.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ objetivos.next_page_number }}" aria-label="Próximo">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}
