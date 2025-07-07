@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard | Sistema{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+            <i class="bi bi-speedometer2 me-2"></i>
+            Dashboard
+        </h1>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-muted">Cadastros</h6>
+                            <h2 class="card-title mb-0">150</h2>
+                        </div>
+                        <div class="text-primary">
+                            <i class="bi bi-person-plus fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'dashboard:cadastros' %}" class="text-decoration-none">
+                        Ver detalhes <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-muted">Processos</h6>
+                            <h2 class="card-title mb-0">45</h2>
+                        </div>
+                        <div class="text-success">
+                            <i class="bi bi-diagram-3 fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'dashboard:processos' %}" class="text-decoration-none">
+                        Ver detalhes <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-muted">Consultas</h6>
+                            <h2 class="card-title mb-0">89</h2>
+                        </div>
+                        <div class="text-info">
+                            <i class="bi bi-search fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'dashboard:consultas' %}" class="text-decoration-none">
+                        Ver detalhes <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-muted">Relatórios</h6>
+                            <h2 class="card-title mb-0">25</h2>
+                        </div>
+                        <div class="text-warning">
+                            <i class="bi bi-file-earmark-text fs-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'dashboard:relatorios' %}" class="text-decoration-none">
+                        Ver detalhes <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Removido link para beneficios_inss para evitar erro NoReverseMatch -->
+
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h5 class="card-title mb-0">Atividades Recentes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Novo cadastro realizado</h6>
+                                <small class="text-muted">3 minutos atrás</small>
+                            </div>
+                            <p class="mb-1">João Silva adicionou um novo registro.</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Processo atualizado</h6>
+                                <small class="text-muted">1 hora atrás</small>
+                            </div>
+                            <p class="mb-1">Processo #12345 foi atualizado.</p>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Relatório gerado</h6>
+                                <small class="text-muted">2 horas atrás</small>
+                            </div>
+                            <p class="mb-1">Relatório mensal foi gerado com sucesso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h5 class="card-title mb-0">Notificações</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-primary rounded-pill me-2">Novo</span>
+                                <div>
+                                    <h6 class="mb-0">Atualização do sistema</h6>
+                                    <small class="text-muted">Nova versão disponível</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-warning rounded-pill me-2">Pendente</span>
+                                <div>
+                                    <h6 class="mb-0">Revisão necessária</h6>
+                                    <small class="text-muted">5 processos aguardando revisão</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-success rounded-pill me-2">Concluído</span>
+                                <div>
+                                    <h6 class="mb-0">Backup realizado</h6>
+                                    <small class="text-muted">Backup automático concluído</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
