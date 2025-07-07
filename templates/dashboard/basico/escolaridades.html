@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Escolaridades | Sistema{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h2 mb-4">Escolaridades</h1>
+
+    <div class="mb-3">
+        <a href="{% url 'dashboard:escolaridade_create' %}" class="btn btn-success">
+            <i class="bi bi-plus-lg"></i> Nova Escolaridade
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for escolaridade in escolaridades %}
+            <tr>
+                <td>{{ escolaridade.nome }}</td>
+                <td>{{ escolaridade.descricao }}</td>
+                <td>
+                    <a href="{% url 'dashboard:escolaridade_update' escolaridade.pk %}" class="btn btn-sm btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="{% url 'dashboard:escolaridade_delete' escolaridade.pk %}" class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">Nenhuma escolaridade cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav aria-label="Paginação">
+        <ul class="pagination justify-content-center">
+            {% if escolaridades.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ escolaridades.previous_page_number }}" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+            {% for num in escolaridades.paginator.page_range %}
+              {% if escolaridades.number == num %}
+                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+              {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if escolaridades.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ escolaridades.next_page_number }}" aria-label="Próximo">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}
