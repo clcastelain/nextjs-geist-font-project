@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Excluir Cidade | Sistema{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h2 mb-4">Excluir Cidade</h1>
+    <p>Você tem certeza que deseja excluir a cidade: <strong>{{ object.nome }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Confirmar Exclusão
+        </button>
+        <a href="{% url 'dashboard:cidades' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
