@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pais, Estado, Cidade, Empresa, EstadoCivil, Escolaridade
+from .models import Pais, Estado, Cidade, Empresa, EstadoCivil, Escolaridade, BeneficioINSS
 
 class PaisForm(forms.ModelForm):
     class Meta:
@@ -75,5 +75,14 @@ class EscolaridadeForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome da escolaridade'}),
+            'descricao': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição', 'rows': 3}),
+        }
+
+class BeneficioINSSForm(forms.ModelForm):
+    class Meta:
+        model = BeneficioINSS
+        fields = '__all__'
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do beneficio INSS'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição', 'rows': 3}),
         }

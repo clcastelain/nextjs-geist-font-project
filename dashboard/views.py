@@ -12,6 +12,55 @@ from .models import Objetivo, BeneficioINSS
 @login_required
 def objetivos(request):
     objetivos_list = Objetivo.objects.all()
+    paginator = Paginator(objetivos_list, 10)
+    page_number = request.GET.get('page')
+    objetivos = paginator.get_page(page_number)
+    context = {
+        'page_title': 'Escolaridades',
+        'objetivos': objetivos,
+    }
+    return render(request, 'dashboard/basico/objetivos.html', context)
+
+@login_required
+def objetivo_create(request):
+    if request.method == 'POST':
+        form = EscolaridadeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Objetivo criada com sucesso!')
+            return redirect('dashboard:objetivos')
+        else:
+            messages.error(request, 'Erro ao criar a objetivo.')
+    else:
+        form = EscolaridadeForm()
+    return render(request, 'dashboard/basico/objetivos_form.html', {'form': form, 'page_title': 'Nova Objetivo'})
+
+@login_required
+def objetivo_update(request, pk):
+    objetivo = get_object_or_404(Objetivo, pk=pk)
+    if request.method == 'POST':
+        form = EscolaridadeForm(request.POST, instance=objetivo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Objetivo atualizada com sucesso!')
+            return redirect('dashboard:objetivos')
+        else:
+            messages.error(request, 'Erro ao atualizar a objetivo.')
+    else:
+        form = EscolaridadeForm(instance=objetivo)
+    return render(request, 'dashboard/basico/objetivos_form.html', {'form': form, 'page_title': 'Editar Objetivo'})
+
+@login_required
+def objetivo_delete(request, pk):
+    objetivo = get_object_or_404(Objetivo, pk=pk)
+    if request.method == 'POST':
+        try:
+            objetivo.delete()
+            messages.success(request, 'Objetivo removida com sucesso!')
+            return redirect('dashboard:objetivos')
+        except Exception as e:
+            messages.error(request, f'Erro ao deletar objetivo: {e}')
+    return render(request, 'dashboard/basico/objetivos_confirm_delete.html', {'object': objetivo, 'page_title': 'Excluir Objetivo'})
     
 # Views para BeneficioINSS
 @login_required

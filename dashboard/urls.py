@@ -52,4 +52,10 @@ urlpatterns = [
     path('basico/objetivos/add/', views.objetivo_create, name='objetivo_create'),
     path('basico/objetivos/<int:pk>/edit/', views.objetivo_update, name='objetivo_update'),
     path('basico/objetivos/<int:pk>/delete/', views.objetivo_delete, name='objetivo_delete'),
+
+        # CRUD Estado Civil
+    path('basico/beneficio-inss/', views.beneficios_inss, name='beneficios_inss'),
+    path('basico/beneficio-inss/add/', views.beneficio_inss_create, name='beneficio_inss_create'),
+    path('basico/beneficio-inss/<int:pk>/edit/', views.beneficio_inss_update, name='beneficio_inss_update'),
+    path('basico/beneficio-inss/<int:pk>/delete/', views.beneficio_inss_delete, name='beneficio_inss_delete'),
 ]

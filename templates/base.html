@@ -108,6 +108,7 @@
                             <li><a href="{% url 'dashboard:estados_civis' %}" class="nav-link {% if request.resolver_match.url_name == 'estados_civis' %}active{% endif %}">Estado Civil</a></li>
                             <li><a href="{% url 'dashboard:escolaridades' %}" class="nav-link {% if request.resolver_match.url_name == 'escolaridades' %}active{% endif %}">Escolaridade</a></li>
                             <li><a href="{% url 'dashboard:objetivos' %}" class="nav-link {% if request.resolver_match.url_name == 'objetivos' %}active{% endif %}">Objetivo</a></li>
+                            <li><a href="{% url 'dashboard:beneficios_inss' %}" class="nav-link {% if request.resolver_match.url_name == 'beneficios_inss' %}active{% endif %}">Benefícios INSS</a></li>
                             <!-- Removido link para beneficios_inss para evitar erro NoReverseMatch -->
                             <!-- Link para Benefícios INSS removido temporariamente -->
                         </ul>

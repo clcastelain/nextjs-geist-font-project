@@ -127,8 +127,7 @@ class Objetivo(models.Model):
 class BeneficioINSS(models.Model):
     nome = models.CharField(max_length=150, unique=True)
     descricao = models.TextField(blank=True, null=True)
-    codigo = models.CharField(max_length=20, unique=True)
-    valor = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+
 
     class Meta:
         verbose_name = 'Benefício INSS'
