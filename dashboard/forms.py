@@ -1,5 +1,6 @@
 from django import forms
-from .models import Pais, Estado, Cidade, Empresa, EstadoCivil, Escolaridade, BeneficioINSS
+from .models import Pais, Estado, Cidade, Empresa, EstadoCivil, Escolaridade, BeneficioINSS, Clientes
+
 
 class PaisForm(forms.ModelForm):
     class Meta:
@@ -86,3 +87,18 @@ class BeneficioINSSForm(forms.ModelForm):
             'nome': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do beneficio INSS'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descrição', 'rows': 3}),
         }
+
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Clientes
+        fields = '__all__'
+        widgets = {
+            'nome_cliente': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome do Cliente'}),
+            'nrcpf': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CPF'}),
+            'endereco': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Endereço'}),
+            'numero': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Numero'}),
+            'telefone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefone'}),
+            'celular': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Celular'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'data_alteracao': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }        

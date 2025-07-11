@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import Pais, Estado, Cidade, Empresa, EstadoCivil, Escolaridade
-from .forms import PaisForm, EstadoForm, CidadeForm, EmpresaForm, EstadoCivilForm, EscolaridadeForm
+from .models import Pais, Estado, Cidade, Empresa, EstadoCivil, Escolaridade, Clientes
+from .forms import PaisForm, EstadoForm, CidadeForm, EmpresaForm, EstadoCivilForm, EscolaridadeForm, ClienteForm
 from .forms_extra import ObjetivoForm, BeneficioINSSForm
 from .search_forms import PaisSearchForm, EstadoSearchForm, CidadeSearchForm
 from .models import Objetivo, BeneficioINSS
@@ -567,3 +567,58 @@ def cidades_delete(request, pk):
         except Exception as e:
             messages.error(request, f'Erro ao deletar cidade: {e}')
     return render(request, 'dashboard/basico/cidades_confirm_delete.html', {'object': cidade, 'page_title': 'Excluir Cidade'})
+
+# Views para Empresa
+@login_required
+def clientes(request):
+    clientes_list = Clientes.objects.all()
+    paginator = Paginator(clientes_list, 10)
+    page_number = request.GET.get('page')
+    clientes = paginator.get_page(page_number)
+    context = {
+        'page_title': 'Clientes',
+        'clientes': clientes,
+    }
+    return render(request, 'dashboard/cliente/clientes.html', context)
+
+@login_required
+def cliente_create(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cliente criado com sucesso!')
+            return redirect('dashboard:clientes')
+        else:
+            messages.error(request, 'Erro ao criar a cliente.')
+    else:
+        form = ClienteForm()
+    return render(request, 'dashboard/cliente/cliente_form.html', {'form': form, 'page_title': 'Novo Cliente'})
+
+@login_required
+def cliente_update(request, pk):
+    cliente = get_object_or_404(Clientes, pk=pk)
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cliente atualizado com sucesso!')
+            return redirect('dashboard:clientes')
+        else:
+            messages.error(request, 'Erro ao atualizar a cliente.')
+    else:
+        form = ClienteForm(instance=cliente)
+    return render(request, 'dashboard/cliente/cliente_form.html', {'form': form, 'page_title': 'Editar Cliente'})
+
+@login_required
+def cliente_delete(request, pk):
+    cliente = get_object_or_404(Clientes, pk=pk)
+    if request.method == 'POST':
+        try:
+            cliente.delete()
+            messages.success(request, 'Cliente removida com sucesso!')
+            return redirect('dashboard:clientes')
+        except Exception as e:
+            messages.error(request, f'Erro ao deletar cliente: {e}')
+    return render(request, 'dashboard/cliente/cliente_confirm_delete.html', {'object': cliente, 'page_title': 'Excluir Cliente'})
+

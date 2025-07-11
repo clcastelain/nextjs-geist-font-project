@@ -6,6 +6,12 @@ app_name = 'dashboard'
 urlpatterns = [
     path('', views.index, name='index'),
     path('cadastros/', views.cadastros, name='cadastros'),
+   # CRUD Cliente
+    path('cliente/', views.clientes, name='clientes'),
+    path('cliente/add/', views.cliente_create, name='cliente_create'),
+    path('cliente/<int:pk>/edit/', views.cliente_update, name='cliente_update'),
+    path('cliente/<int:pk>/delete/', views.cliente_delete, name='cliente_delete'),
+    
     path('processos/', views.processos, name='processos'),
     path('consultas/', views.consultas, name='consultas'),
     path('relatorios/', views.relatorios, name='relatorios'),
